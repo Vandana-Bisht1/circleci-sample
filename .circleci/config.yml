@@ -47,6 +47,11 @@ jobs:
       xcode: 13.4.1
     steps:
       - run: echo "Say hello to YAML!"
+  say_howareyou:
+    macos:
+      xcode: 13.4.1
+    steps:
+      - run: echo "Say how are you to YAML!"
   say_goodbye:
     macos:
       xcode: 13.4.1
@@ -65,4 +70,7 @@ workflows:
   my-workflow:
     jobs:
       - say_hello
+      - say_howareyou:
+          requires:
+            - say_hello
       - say_goodbye

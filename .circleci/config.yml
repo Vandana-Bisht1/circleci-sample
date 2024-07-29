@@ -42,6 +42,12 @@ jobs:
       - run:
           name: deploy
           command: "#e.g. ./deploy.sh"
+  hello-job:
+    macos:
+      xcode: 13.4.1
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
 workflows:
   build-and-test:
     jobs:
@@ -52,3 +58,6 @@ workflows:
     # - deploy:
     #     requires:
     #       - build-node
+  my-workflow:
+    jobs:
+      - hello-job

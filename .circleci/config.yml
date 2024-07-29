@@ -42,12 +42,16 @@ jobs:
       - run:
           name: deploy
           command: "#e.g. ./deploy.sh"
-  hello-job:
+  say_hello:
     macos:
       xcode: 13.4.1
     steps:
-      - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run: echo "Say hello to YAML!"
+  say_goodbye:
+    macos:
+      xcode: 13.4.1
+    steps:
+      - run: echo "Say goodbye to YAML!"
 workflows:
   build-and-test:
     jobs:
@@ -60,4 +64,5 @@ workflows:
     #       - build-node
   my-workflow:
     jobs:
-      - hello-job
+      - say_hello
+      - say_goodbye

@@ -13,7 +13,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests with JUnit as reporter
-          command: npm test -- --reporters=jest-junit
+          command: npm test -- --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
           environment:
             JEST_JUNIT_OUTPUT_DIR: test-results
             JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"

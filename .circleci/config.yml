@@ -16,12 +16,9 @@ jobs:
           command: mkdir -p test-results
       - run:
           name: Run tests
-          command: npm test -- --passWithNoTests --ci --reporters=default --reporters=jest-junit --outputFile=test-results/results.xml
+          command: npm test -- --passWithNoTests --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
       - store_test_results:
           path: test-results
-      - store_artifacts:
-          path: test-results
-          destination: test-results
   build-node:
     # Build node project
     executor: node/default

@@ -12,6 +12,9 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          name: Create test-results directory
+          command: mkdir -p test-results
+      - run:
           name: Run tests
           command: npm test --passWithNoTests
       - store_test_results:

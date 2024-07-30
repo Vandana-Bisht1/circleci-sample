@@ -20,6 +20,9 @@ jobs:
       - run:
           name: List test results
           command: ls -al test-results
+      - run:
+          name: Display test-results file
+          command: cat test-results/junit.xml || true
       - store_test_results:
           path: test-results
   build-node:

@@ -12,11 +12,11 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Create test-results directory
-          command: mkdir -p test-results
-      - run:
           name: Run tests
           command: npm test -- --reporters=jest-junit
+      - run:
+          name: Make dir and move xml to test-results
+          command: mkdir -p test-results && mv junit.xml test-results/junit.xml || true
       - run:
           name: List test results
           command: ls -al test-results

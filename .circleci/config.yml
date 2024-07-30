@@ -16,7 +16,7 @@ jobs:
           command: mkdir -p test-results
       - run:
           name: Run tests
-          command: npm test -- --passWithNoTests --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
+          command: npm test -- --reporters=jest-junit
       - run:
           name: List test results
           command: ls -al test-results

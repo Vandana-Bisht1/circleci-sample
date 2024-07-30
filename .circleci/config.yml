@@ -12,17 +12,11 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Run tests
+          name: Run tests with JUnit as reporter
           command: npm test -- --reporters=jest-junit
-      - run:
-          name: Make dir and move xml to test-results
-          command: mkdir -p test-results && mv junit.xml test-results/junit.xml || true
-      - run:
-          name: List test results
-          command: ls -al test-results
-      - run:
-          name: Display test-results file
-          command: cat test-results/junit.xml || true
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-results
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
       - store_test_results:
           path: test-results
   build-node:

@@ -17,6 +17,9 @@ jobs:
       - run:
           name: Run tests
           command: npm test -- --passWithNoTests --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
+      - run:
+          name: List test results
+          command: ls -al test-results
       - store_test_results:
           path: test-results
   build-node:

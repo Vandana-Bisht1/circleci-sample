@@ -4,6 +4,7 @@ version: 2.1
 orbs:
   node: circleci/node@5
   aws-s3: circleci/aws-s3@3.1.1
+
 jobs:
   test-node:
     # Install node dependencies and run tests
@@ -51,19 +52,9 @@ jobs:
     docker:
       - image: circleci/node:current
     steps:
-      # Replace this with steps to deploy to users
-      # - run:
-      #     name: deploy
-      #     command: "#e.g. ./deploy.sh"
       - checkout
-      - run:
-          name: Print AWS Credentials
-          command: |
-            echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
-            echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
-            echo "AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION"
       - aws-s3/sync:
-          from: src
+          from: ./
           to: 's3://circleci-sample-vandana'
   say_hello:
     macos:

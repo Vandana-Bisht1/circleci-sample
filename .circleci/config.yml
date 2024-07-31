@@ -12,6 +12,12 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
+          name: Split tests and output to file
+          command: |
+            circleci tests glob "src/**/*.test.*" | circleci tests split --split-by=timings > split_tests.txt
+            echo "Running the following tests:"
+            cat split_tests.txt
+      - run:
           name: Run tests with JUnit as reporter
           command: npm test -- --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
           environment:

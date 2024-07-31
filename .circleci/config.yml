@@ -16,7 +16,7 @@ jobs:
           name: Test application
           command: |
             TEST=$(circleci tests glob "src/__tests__/*.tsx")
-            echo "$TEST" | circleci tests run --command="xargs yarn test" --split-by=timings
+            echo "$TEST" | circleci tests run --command="xargs npm test -- --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml" --split-by=timings
       # - run:
       #     name: Split tests and output to file
       #     command: |

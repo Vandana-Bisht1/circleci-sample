@@ -13,33 +13,19 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Test application
+          name: Split tests and output to file
           command: |
-            TEST=$(circleci tests glob "src/__tests__/*.tsx")
-            echo "$TEST" | circleci tests run --command="xargs npm test" --split-by=timings
+            circleci tests glob "src/**/*.test.*" | circleci tests split --split-by=timings > split_tests.txt
+            echo "Running the following tests:"
+            cat split_tests.txt
       - run:
-          command: cp junit.xml ~/junit/
-          when: always
+          name: Run tests with JUnit as reporter
+          command: npm test -- --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-results
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
       - store_test_results:
-          path: ~/junit
-      # # - run:
-      # #     name: Split tests and output to file
-      # #     command: |
-      # #       circleci tests glob "src/**/*.test.*" | circleci tests split --split-by=timings > split_tests.txt
-      # #       echo "Running the following tests:"
-      # #       cat split_tests.txt
-      # # - run:
-      # #     name: Run tests with JUnit as reporter
-      # #     command: npm test -- --ci --reporters=default --reporters=jest-junit --outputFile=test-results/junit.xml
-      #     environment:
-      #       JEST_JUNIT_OUTPUT_DIR: test-results
-      #       # JEST_JUNIT_OUTPUT_NAME: junit.xml
-      #       # JEST_JUNIT_ANCESTOR_SEPARATOR: ' › '
-      #       # JEST_JUNIT_CLASSNAME_TEMPLATE: '{filepath}-{title}'
-      #       # JEST_JUNIT_TITLE_TEMPLATE: '{title}'
-      #       JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
-      # - store_test_results:
-      #     path: test-results
+          path: test-results
   build-node:
     # Build node project
     executor: node/default

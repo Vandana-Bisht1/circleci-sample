@@ -2,26 +2,19 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home';
+import { ApolloProvider } from '@apollo/client';
+import client from './components/graphql/apolloClient';
+import Countries from './components/graphql/Countries';
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>App Component</h1>
+      <Countries />
       <Home />
     </div>
+    </ApolloProvider>
   );
 }
 

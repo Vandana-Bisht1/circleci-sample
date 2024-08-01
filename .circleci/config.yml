@@ -48,7 +48,7 @@ jobs:
           path: ~/artifacts
           destination: node-build
   deploy:
-    # This is an example deploy job, not actually used by the workflow
+    # deploy job
     docker:
       - image: cimg/base:stable
     steps:

@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "./queries";
 import "./Countries.css";
+import { useNavigate } from "react-router-dom";
 
 interface Country {
   code: string;
@@ -16,6 +17,7 @@ interface CountriesData {
 
 const Countries = () => {
   const { loading, error, data } = useQuery<CountriesData>(GET_COUNTRIES);
+  const navigate = useNavigate();
 
   if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">Error: {error.message}</p>;
@@ -25,7 +27,7 @@ const Countries = () => {
       <h2>Countries with Capitals (GraphQL Example)</h2>
       <div className="countries">
         {data?.countries.map((country) => (
-          <div key={country.code} className="country-card">
+          <div key={country.code} className="country-card" onClick={() => navigate(`/country/${country.code}`)}>
             <h3>
               {country.name} {country.emoji}
             </h3>

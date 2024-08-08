@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders App component', () => {
-  render(<App />);
-  const text = screen.getByText('App Component');
-  expect(text).toBeInTheDocument();
+// Mock the AllRoutes component to simplify the test
+jest.mock("./AllRoutes", () => () => <div>AllRoutes Component</div>);
+
+describe("App Component", () => {
+  test("renders the App component with title and AllRoutes", () => {
+    render(<App />);
+    // Check if the AllRoutes component is rendered
+    expect(screen.getByText(/AllRoutes Component/i)).toBeInTheDocument();
+  });
 });

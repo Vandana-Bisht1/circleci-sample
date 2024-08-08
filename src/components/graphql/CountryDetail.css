@@ -1,0 +1,48 @@
+.country-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    position: relative;
+    background-color: lightgray;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  strong {
+    font-weight: bold;
+  }  
+
+
+.loading {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+.error {
+  font-size: 18px;
+  color: red;
+  font-weight: bold;
+}

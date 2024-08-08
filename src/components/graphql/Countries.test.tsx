@@ -8,6 +8,12 @@ jest.mock('@apollo/client', () => ({
   useQuery: jest.fn(),
 }));
 
+// Mock the useNavigate hook from react-router-dom
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
+}));
+
 const mockCountriesData = {
   countries: [
     { code: 'US', name: 'United States', emoji: '🇺🇸', capital: 'Washington, D.C.' },
